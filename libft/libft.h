@@ -6,7 +6,7 @@
 /*   By: etranchi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/17 16:11:21 by etranchi          #+#    #+#             */
-/*   Updated: 2017/04/20 10:49:08 by etranchi         ###   ########.fr       */
+/*   Updated: 2017/05/27 14:02:21 by etranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-# define BUFF_SIZE 50
+# define BUFF_SIZE 3
 
 typedef struct		s_list
 {
