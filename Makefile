@@ -10,9 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS= -Wall -Wextra -Werror
+/*FLAGS= -Wall -Wextra -Werror*/
 
-SRC= 
+SRC= main.c\
+	utils.c\
+	ray.c\
+	init.c\
+	key.c\
 
 NAME = wolf3d
 CC = gcc
@@ -29,23 +33,23 @@ CE = \033[0m
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo "\033[K$(CY)[FRACT-OL] :$(CE) $(CG)Creating Library$(CE)\033[1A";
+	@echo "\033[K$(CY)[WOLF3D] :$(CE) $(CG)Creating Library$(CE)\033[1A";
 	@make -C libft/ fclean
 	@make -C libft/
 	@$(CC)  $(FLAGS) $(FRAME) $(INC) -o $(NAME) $(OBJ) $(FT) $(MLX)
-	@echo "\033[K$(CY)[FRACT-OL] :$(CE) $(CG)Compiling FRACT-OL ...$(CE)";
+	@echo "\033[K$(CY)[WOLF3D] :$(CE) $(CG)Compiled WOLF-3D$(CE)";
 
 %.o: %.c
 	@$(CC) $(FLAGS) -c $< -o $@
-	@echo "\033[K$(CY)[FRACT-OL] :$(CE) $(CG)Compiling $<$(CE) \033[1A";
+	@echo "\033[K$(CY)[WOLF3D] :$(CE) $(CG)Compiling $<$(CE) \033[1A";
 
 clean:
 	@$(RM) $(OBJ)
-	@echo "\033[K$(CY)[FRACT-OL] :$(CE) $(CG)Cleaning Object files $(CE)";
+	@echo "\033[K$(CY)[WOLF3D] :$(CE) $(CG)Cleaning Object files $(CE)";
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "\033[K$(CY)[FRACT-OL] :$(CE) $(CG)Cleaning FRACT-OL $(CE)";
+	@echo "\033[K$(CY)[WOLF3D] :$(CE) $(CG)Cleaning WOLF3D $(CE)";
 
 re: fclean all
 

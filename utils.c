@@ -17,3 +17,14 @@ void ft_error(void)
 	ft_putstr("Error.\n");
 	exit(0);
 }
+
+void ft_print_line(int x, int start, int end, int color, void *mlx, void *win)
+{
+	int i = 0;
+
+	while (i < end - start)
+	{
+		mlx_pixel_put(mlx, win, x, (start + i), color);
+		i++;
+	}
+}
