@@ -20,12 +20,18 @@ int main(void)
 {
 	t_map *w;
 
-	printf("coucou\n");
 	w = ft_init_mlx();
-	printf("coucou\n");
-	ft_ray(w);
-	mlx_key_hook(w->win, ft_key, w);
+	//ft_ray(w);
+  int x = 0;
+  while (x < WIDTH)
+  {
+    ft_print_line(x, 0, HEIGHT, 0xFFFFFF,w);
+	   x++;
+  }
+  mlx_put_image_to_window(w->mlx, w->win, w->img, 0 ,0);
+  mlx_key_hook(w->win, ft_key, w);
 	mlx_loop(w->mlx);
+
  /* double posX = 22, posY = 12;  //x and y start position
   double dirX = -1, dirY = 0; //initial direction vector
   double planeX = 0, planeY = 0.66; //the 2d raycaster version of camera plane

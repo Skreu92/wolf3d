@@ -43,27 +43,33 @@ void moveright(t_map *w);
 void moveup(t_map *w)
 {
 	double moveSpeed = 300;
-    if(wrldMap[(int)(w->pos->x + w->dir->x * moveSpeed)][(int)(w->pos->y)] == 0)
-      	w->pos->x += w->dir->x * moveSpeed;
-    if(wrldMap[(int)(w->pos->x)][(int)(w->pos->y + w->dir->y * moveSpeed)] == 0) 
-    	w->pos->y += w->dir->y * moveSpeed;
-    printf("allo\n");
-    ft_ray(w);
+  if(wrldMap[(int)(w->pos->x + w->dir->x * moveSpeed)][(int)(w->pos->y)] == 0)
+    w->pos->x += w->dir->x * moveSpeed;
+  if(wrldMap[(int)(w->pos->x)][(int)(w->pos->y + w->dir->y * moveSpeed)] == 0) 
+    w->pos->y += w->dir->y * moveSpeed;
+  ft_ray(w);
 }
 void movedown(t_map *w);
 int ft_key(int key, void *w)
 {
 
 	printf("keycode : %d\n",key);
+  if (key == 53)
+    exit(0);
 	if (key == 123 || key == 0)
-		//moveleft(w);
+	{	//moveleft(w);
+  }
 	if (key == 124 || key == 2)
-		//moveright(w);
-	if (key == 126 || key == 13)
-		moveup(w);
-	if (key == 125 || key == 1)
-		//movedown(w);
-		return (0);
+	{	//moveright(w);
+	}
+  if (key == 126 || key == 13)
+	{	moveup(w);
+	}
+  if (key == 125 || key == 1)
+	{
+
+  //movedown(w);
+	}
 
 	return (0);
 }

@@ -48,7 +48,7 @@ typedef struct 	s_map
 	void		*mlx;
 	void		*win;
 	void		*img;
-	int			*add;
+	char		*add;
 	int			*bpp;
 	int			*bpl;
 	int			*end;
@@ -79,5 +79,5 @@ t_map *parse_to_tab(char *str);
 t_line		*create_lst_line(int fd);
 t_line		*create_each_line(char **tab);
 void	ft_error(void);
-void ft_print_line(int x, int start, int end, int color, void * mlx, void *win);
+void ft_print_line(int x, int start, int end, int color, t_map *w);
 #endif

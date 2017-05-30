@@ -21,7 +21,6 @@ t_map *ft_init_mlx(void)
 	w->bpp = (int *)malloc(sizeof(int));
 	w->bpl = (int *)malloc(sizeof(int));
 	w->end = (int *)malloc(sizeof(int));
-	printf("cccc\n");
 	w->camera = (t_pdou *)malloc(sizeof(t_pdou));
 	w->rayPos = (t_pdou *)malloc(sizeof(t_pdou));
 	w->rayDir = (t_pdou *)malloc(sizeof(t_pdou));
@@ -31,7 +30,7 @@ t_map *ft_init_mlx(void)
 	w->mlx = mlx_init();
 	w->win = mlx_new_window(w->mlx, WIDTH, HEIGHT, "Wolf3D");
 	w->img = mlx_new_image(w->mlx, WIDTH, HEIGHT);
-	w->add = (int*)mlx_get_data_addr(w->img, w->bpp, w->bpl, w->end);
+	w->add = (char *)mlx_get_data_addr(w->img, w->bpp, w->bpl, w->end);
 	init_double_pdp(w);
 
 	return (w);

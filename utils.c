@@ -18,13 +18,25 @@ void ft_error(void)
 	exit(0);
 }
 
-void ft_print_line(int x, int start, int end, int color, void *mlx, void *win)
+void ft_print_line(int x, int start, int end, int color, t_map *w)
 {
-	int i = 0;
+	int y;
+	unsigned char color1;
+	unsigned char color2;
+	unsigned char color3;
 
-	while (i < end - start)
+	y = start;
+	color1 = (color & 0xFF0000) << 16;
+	color2 = (color & 0xFF00) << 8;
+	color3 = (color & 0xFF) << 4;
+	printf("%d %d %d\n",color3, color2, color1 );
+	printf("x%d y%d end %d\n", x, y, end);
+	while (y < end)
 	{
-		mlx_pixel_put(mlx, win, x, (start + i), color);
-		i++;
+		w->add[y * WIDTH + x] = color3;
+		w->add[y * WIDTH + x + 1] = color2;
+		w->add[y * WIDTH + x + 2] = color1;
+		y++;
 	}
+	printf("aaa %d\n",x );
 }

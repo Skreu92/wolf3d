@@ -46,7 +46,6 @@ void ft_ray(t_map *w)
 	while (w->x < WIDTH)
 	{
 		ft_init_position(w, w->x);
-		printf("x : %d",w->x);
 		w->x++;
 	}
 }
@@ -114,7 +113,7 @@ void ft_begin_draw(t_map *w)
       lineHeight = (int)(HEIGHT / w->perpWallDist);
 
       //calculate lowest and highest pixel to fill in current stripe
-
+      printf("lineH%d\n",lineHeight);
       drawStart = -lineHeight / 2 + HEIGHT / 2;
       if(drawStart < 0)
       	drawStart = 0;
@@ -124,14 +123,15 @@ void ft_begin_draw(t_map *w)
       	drawEnd = HEIGHT - 1;
 
       //choose wall color
-      color = 0x0000FFFF;
+      color = 0xFFFF00;
       //give x and y sides different brightness
       if (w->side == 1) 
       {
       	color = color / 2;
       }
       //draw the pixels of the stripe as a vertical line
-      ft_print_line(w->x, drawStart, drawEnd, color, w->mlx, w->win);
+      printf("kkk\n");
+      ft_print_line(w->x, drawStart, drawEnd, color, w);
 }
 void ft_init_position(t_map *w, int x)
 {
@@ -143,5 +143,6 @@ void ft_init_position(t_map *w, int x)
 	w->map->y = (int)w->rayPos->y;
 	w->hit = 0;
 	go_check_around(w);
+  printf("coucou\n");
 	ft_begin_draw(w);
 }
