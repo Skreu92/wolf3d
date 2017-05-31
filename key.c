@@ -47,13 +47,20 @@ void moveup(t_map *w)
     w->pos->x += w->dir->x * moveSpeed;
   if(wrldMap[(int)(w->pos->x)][(int)(w->pos->y + w->dir->y * moveSpeed)] == 0) 
     w->pos->y += w->dir->y * moveSpeed;
-  ft_ray(w);
+    w->hit = 0;
+    ft_ray(w);
+    mlx_put_image_to_window(w->mlx, w->win, w->img, 0 ,0);
+      mlx_key_hook(w->win, ft_key, w);
 }
 void movedown(t_map *w);
-int ft_key(int key, void *w)
+int ft_key(int key, void *param)
 {
+  t_map *w;
 
-	printf("keycode : %d\n",key);
+  w = (t_map *)param;
+  mlx_clear_window(w->mlx, w->win);
+  w->img = mlx_new_image(w->mlx, WIDTH, HEIGHT);
+  w->add = (int *)mlx_get_data_addr(w->img, w->bpp, w->bpl, w->end);
   if (key == 53)
     exit(0);
 	if (key == 123 || key == 0)
@@ -63,13 +70,15 @@ int ft_key(int key, void *w)
 	{	//moveright(w);
 	}
   if (key == 126 || key == 13)
-	{	moveup(w);
+	{	
+    moveup(w);
 	}
   if (key == 125 || key == 1)
 	{
 
   //movedown(w);
 	}
+
 
 	return (0);
 }

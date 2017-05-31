@@ -30,7 +30,7 @@ t_map *ft_init_mlx(void)
 	w->mlx = mlx_init();
 	w->win = mlx_new_window(w->mlx, WIDTH, HEIGHT, "Wolf3D");
 	w->img = mlx_new_image(w->mlx, WIDTH, HEIGHT);
-	w->add = (char *)mlx_get_data_addr(w->img, w->bpp, w->bpl, w->end);
+	w->add = (int *)mlx_get_data_addr(w->img, w->bpp, w->bpl, w->end);
 	init_double_pdp(w);
 
 	return (w);
@@ -47,10 +47,11 @@ void init_double_pdp(t_map *w)
 	w->pos = (t_pdou *)malloc(sizeof(t_pdou));
 	w->dir = (t_pdou *)malloc(sizeof(t_pdou));
 	w->plane = (t_pdou *)malloc(sizeof(t_pdou));
-	w->pos->x = 22;
-	w->pos->y = 12;
-	w->dir->x = -1;
+	w->pos->x = 2;
+	w->pos->y = 2;
+	w->dir->x = 1;
 	w->dir->y = 0;
 	w->plane->x = 0;
 	w->plane->y = 0.66;
+	w->x = 0;
 }

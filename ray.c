@@ -43,7 +43,7 @@ int worldMap[mapWidth][mapHeight]=
 void ft_ray(t_map *w)
 {
 	w->x = 0;
-	while (w->x < WIDTH)
+	while (w->x < WIDTH - 1)
 	{
 		ft_init_position(w, w->x);
 		w->x++;
@@ -69,14 +69,14 @@ void ft_go_hit(t_map *w, t_pdou *sideDist)
         	w->hit = 1;
       }
       if (w->side == 0) 
-      	w->perpWallDist = (w->map->x - w->rayPos->x + (1 - w->step->x) / 2) / w->rayDir->x;
+      	w->perpWallDist = (w->map->x - w->rayPos->x + ((1 - w->step->x) / 2) / w->rayDir->x);
       else           
-      	w->perpWallDist = (w->map->y - w->rayPos->y + (1 - w->step->y) / 2) / w->rayDir->y;
+      	w->perpWallDist = (w->map->y - w->rayPos->y + ((1 - w->step->y) / 2) / w->rayDir->y);
 }
 void go_check_around(t_map *w)
 {
 	t_pdou *sideDist;
-
+ 
 	if(!(sideDist = (t_pdou *)malloc(sizeof(t_pdou))))
 		ft_error();
 	if (w->rayDir->x < 0)
@@ -104,45 +104,35 @@ void go_check_around(t_map *w)
 
 void ft_begin_draw(t_map *w)
 {
-	//Calculate height of line to draw on screen
       int lineHeight; 
       int drawStart;
       int drawEnd;
-      int color;
 
       lineHeight = (int)(HEIGHT / w->perpWallDist);
-
-      //calculate lowest and highest pixel to fill in current stripe
-      printf("lineH%d\n",lineHeight);
       drawStart = -lineHeight / 2 + HEIGHT / 2;
       if(drawStart < 0)
       	drawStart = 0;
- 
       drawEnd = lineHeight / 2 + HEIGHT / 2;
       if(drawEnd >= HEIGHT)
       	drawEnd = HEIGHT - 1;
 
-      //choose wall color
-      color = 0xFFFF00;
-      //give x and y sides different brightness
+      w->color = 0x00FF0000;
+
       if (w->side == 1) 
       {
-      	color = color / 2;
+      	w->color = 0x00FF0099;
       }
-      //draw the pixels of the stripe as a vertical line
-      printf("kkk\n");
-      ft_print_line(w->x, drawStart, drawEnd, color, w);
+      ft_print_line(w->x, drawEnd, drawStart, w->color, w);
 }
 void ft_init_position(t_map *w, int x)
 {
-	w->camera->x = 2 * x / (double)(WIDTH) - 1;
-	ft_init_db(w->rayPos, WIDTH, HEIGHT);
+	w->camera->x = 2 * x / (double)(WIDTH - 1) - 1;
+	ft_init_db(w->rayPos, w->pos->x, w->pos->y);
 	ft_init_db(w->rayDir, w->dir->x + w->plane->x * w->camera->x, w->dir->y + w->plane->y * w->camera->x);
 	ft_init_db(w->deltaDist, sqrt(1 + (w->rayDir->y * w->rayDir->y) / (w->rayDir->x * w->rayDir->x)), sqrt(1 + (w->rayDir->x * w->rayDir->x) / (w->rayDir->y * w->rayDir->y)));
 	w->map->x = (int)w->rayPos->x;
 	w->map->y = (int)w->rayPos->y;
 	w->hit = 0;
 	go_check_around(w);
-  printf("coucou\n");
 	ft_begin_draw(w);
 }

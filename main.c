@@ -21,13 +21,16 @@ int main(void)
 	t_map *w;
 
 	w = ft_init_mlx();
-	//ft_ray(w);
-  int x = 0;
-  while (x < WIDTH)
+  
+	ft_ray(w);
+
+
+/*int x = 0;
+  while (x < WIDTH / 2)
   {
-    ft_print_line(x, 0, HEIGHT, 0xFFFFFF,w);
+    ft_print_line(x, 0, HEIGHT- 1, 0x0000FF00,w);
 	   x++;
-  }
+  }*/
   mlx_put_image_to_window(w->mlx, w->win, w->img, 0 ,0);
   mlx_key_hook(w->win, ft_key, w);
 	mlx_loop(w->mlx);

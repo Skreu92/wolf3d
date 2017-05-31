@@ -20,23 +20,24 @@ void ft_error(void)
 
 void ft_print_line(int x, int start, int end, int color, t_map *w)
 {
+	char color1;
+	char color2;
+	char color3;
 	int y;
-	unsigned char color1;
-	unsigned char color2;
-	unsigned char color3;
-
-	y = start;
-	color1 = (color & 0xFF0000) << 16;
-	color2 = (color & 0xFF00) << 8;
-	color3 = (color & 0xFF) << 4;
-	printf("%d %d %d\n",color3, color2, color1 );
-	printf("x%d y%d end %d\n", x, y, end);
-	while (y < end)
+	int tmp;
+	color1 = (w->color & 0xFFFFFF00) >> 24;
+	color2 = (w->color & 0xFFFFFF) >> 16;
+	color3 = (w->color & 0xFFFF) >> 8;
+	y = 0;
+	while (y < abs(end - start))
 	{
-		w->add[y * WIDTH + x] = color3;
-		w->add[y * WIDTH + x + 1] = color2;
-		w->add[y * WIDTH + x + 2] = color1;
+		w->add[ (start + y) * WIDTH + x ] = color;
+		//w->add[ y * WIDTH + x * 4+ 1] = color2;
+		//w->add[y * WIDTH + x * 4+ 2] = color1;
 		y++;
 	}
-	printf("aaa %d\n",x );
+
 }
+
+
+

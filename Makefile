@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-/*FLAGS= -Wall -Wextra -Werror*/
+FLAGS= -g -O0 -fsanitize=address
 
 SRC= main.c\
 	utils.c\

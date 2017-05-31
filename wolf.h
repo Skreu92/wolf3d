@@ -16,6 +16,7 @@
 #include "fcntl.h"
 #include "libft/libft.h"
 #include "minlibx/mlx.h"
+#include <stdlib.h>
 #include <math.h>
 
 #define WIDTH 512
@@ -48,7 +49,7 @@ typedef struct 	s_map
 	void		*mlx;
 	void		*win;
 	void		*img;
-	char		*add;
+	int		*add;
 	int			*bpp;
 	int			*bpl;
 	int			*end;
@@ -63,6 +64,7 @@ typedef struct 	s_map
 	t_pint *step;
 	t_pint *map;
 	t_pdou *deltaDist;
+	int color;
 	int side;
 	int hit;
 	double perpWallDist;
