@@ -63,11 +63,11 @@ t_line			*create_lst_line(int fd)
 	return (tmp);
 }
 
-void		create_tab_int(t_line *lst, t_map *w)
+void			create_tab_int(t_line *lst, t_map *w)
 {
-	int i;
-	int j;
-	t_line *tmp;
+	int		i;
+	int		j;
+	t_line	*tmp;
 
 	j = 0;
 	i = 0;
@@ -85,43 +85,40 @@ void		create_tab_int(t_line *lst, t_map *w)
 		free(tmp);
 		i++;
 	}
-
 }
 
-void check_map(t_map *w)
+void			check_map(t_map *w)
 {
-
 	int j;
 
-	if(!(w->w_matrice > 2 && w->h_matrice > 2))
+	if (!(w->w_matrice > 2 && w->h_matrice > 2))
 		ft_error();
-	if(w->matrice[1][1] != 0)
+	if (w->matrice[1][1] != 0)
 		ft_error();
 	j = w->w_matrice;
-	while(j--)
+	while (j--)
 	{
-		if(w->matrice[0][j] != 1)
+		if (w->matrice[0][j] != 1)
 			ft_error();
-		if(w->matrice[w->h_matrice - 1][j] != 1)
+		if (w->matrice[w->h_matrice - 1][j] != 1)
 			ft_error();
 	}
-	printf("coucou\n");
 	j = w->h_matrice;
 	while (j--)
 	{
-		if(w->matrice[j][0] != 1)
+		if (w->matrice[j][0] != 1)
 			ft_error();
-		if(w->matrice[j][w->w_matrice - 1] != 1)
+		if (w->matrice[j][w->w_matrice - 1] != 1)
 			ft_error();
 	}
-}	
+}
 
 t_map			*parse_to_tab(char *str)
 {
 	int			fd;
 	t_map		*w;
 	t_line		*lst_line;
-	int 		i;
+	int			i;
 
 	if (!(fd = open(str, O_RDONLY)))
 		ft_error();
@@ -135,7 +132,7 @@ t_map			*parse_to_tab(char *str)
 	if (!(w->matrice = (int **)malloc(sizeof(int *) * w->h_matrice)))
 		ft_error();
 	i = -1;
-	while (++i < w->h_matrice )
+	while (++i < w->h_matrice)
 		if (!(w->matrice[i] = (int *)malloc(sizeof(int) * w->w_matrice)))
 			ft_error();
 	create_tab_int(lst_line, w);

@@ -99,4 +99,3 @@ int		ft_near_other(double tmpx, double tmpy, double x, double y)
 		return (1);
 	return (0);
 }
-

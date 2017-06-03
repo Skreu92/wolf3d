@@ -6,7 +6,7 @@
 /*   By: Etienne <etranchi@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/01 17:45:33 by Etienne           #+#    #+#             */
-/*   Updated: 2017/06/01 17:45:35 by Etienne          ###   ########.fr       */
+/*   Updated: 2017/06/03 16:03:14 by etranchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,10 @@ void	ft_draw_ray(t_map *w, double a)
 {
 	int i;
 	int height;
-	int j;
 
-	j = 0;
 	a = a * cos(w->tmp_angle - w->angle);
 	height = WIDTH / a;
-	i = HEIGHT/2 - height;
-	w->red = 99;
-	w->blue = 99;
-	w->green = 99;
-	while (j < i)
-	{
-		ft_draw(w, w->col, j);
-		j++;
-	}
+	i = HEIGHT / 2 - height;
 	(i < 0) ? i = 0 : 0;
 	ft_color(w);
 	while (i < HEIGHT / 2 + height && i < HEIGHT && i >= 0 && w->col < WIDTH)
@@ -45,7 +35,7 @@ void	ft_draw_ray(t_map *w, double a)
 			w->red++;
 			w->blue++;
 			w->green++;
-		}	
+		}
 	}
 }
 

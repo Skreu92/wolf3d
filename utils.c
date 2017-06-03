@@ -12,7 +12,7 @@
 
 #include "wolf.h"
 
-void ft_error(void)
+void		ft_error(void)
 {
 	ft_putstr("Error.\n");
 	exit(0);
@@ -46,7 +46,3 @@ int			ft_matrice_size(t_line *begin_list)
 	}
 	return (i);
 }
-
-
-
-

@@ -47,4 +47,3 @@ void	ft_set_rays(t_map *w)
 		w->col++;
 	}
 }
-
