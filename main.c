@@ -19,13 +19,13 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		ft_error();
 	w = parse_to_tab(av[1]);
-	w->angle = 0.5 * M_PI_2;
-	w->red = 255;
+	w->angle = M_PI_2;
+	w->red = 0;
 	w->green = 0;
 	w->blue = 0;
 	w->col = 0;
-	w->posx = 1.1;
-	w->posy = 1.1;
+	w->posx = 1.5;
+	w->posy = 1.5;
 	ft_init_mlx(w);
 	return (0);
 }
