@@ -11,74 +11,84 @@
 /* ************************************************************************** */
 
 #include "wolf.h"
-int wrldMap[mapWidth][mapHeight]=
-{
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-};
-void moveleft(t_map *w);
-void moveright(t_map *w);
-void moveup(t_map *w)
-{
-	double moveSpeed = 300;
-  if(wrldMap[(int)(w->pos->x + w->dir->x * moveSpeed)][(int)(w->pos->y)] == 0)
-    w->pos->x += w->dir->x * moveSpeed;
-  if(wrldMap[(int)(w->pos->x)][(int)(w->pos->y + w->dir->y * moveSpeed)] == 0) 
-    w->pos->y += w->dir->y * moveSpeed;
-    w->hit = 0;
-    ft_ray(w);
-    mlx_put_image_to_window(w->mlx, w->win, w->img, 0 ,0);
-      mlx_key_hook(w->win, ft_key, w);
-}
-void movedown(t_map *w);
-int ft_key(int key, void *param)
-{
-  t_map *w;
 
-  w = (t_map *)param;
-  mlx_clear_window(w->mlx, w->win);
-  w->img = mlx_new_image(w->mlx, WIDTH, HEIGHT);
-  w->add = (int *)mlx_get_data_addr(w->img, w->bpp, w->bpl, w->end);
+int   ft_check_pos(t_map *w)
+{
+
+  if (w->matrice[(int)w->posy][(int)w->posx] == 1)
+      return (0);
+  return (1);
+}
+
+void move_left_right(t_map *w, int key)
+{
+  if (key == 123)
+  {
+    w->posy -= 0.2 * cos(w->angle);
+    w->posx += 0.2 * sin(w->angle);
+    if (ft_check_pos(w) == 0)
+    {
+      w->posy += 0.2 * cos(w->angle);
+      w->posx -= 0.2 * sin(w->angle);
+    }
+  }
+  if (key == 124)
+  {
+    w->posy += 0.2 * cos(w->angle);
+    w->posx -= 0.2 * sin(w->angle);
+    if (ft_check_pos(w) == 0)
+    {
+      w->posy -= 0.2 * cos(w->angle);
+      w->posx += 0.2 * sin(w->angle);
+    }
+  }
+}
+void move_up_down(t_map *w, int key)
+{
+	if (key == 126)
+  {
+    w->posy += 0.2 * sin(w->angle);
+    w->posx += 0.2 * cos(w->angle);
+    if (ft_check_pos(w) == 0)
+    {
+      w->posy -= 0.2 * sin(w->angle);
+      w->posx -= 0.2 * cos(w->angle);
+    }
+  }
+  if (key == 125)
+  {
+    w->posy -= 0.2 * sin(w->angle);
+    w->posx -= 0.2 * cos(w->angle);
+    if (ft_check_pos(w) == 0)
+    {
+      w->posy += 0.2 * sin(w->angle);
+      w->posx += 0.2 * cos(w->angle);
+    }
+  }
+}
+
+void change_orientation(t_map *w, int key)
+{
+
+  if (key == 0) 
+    w->angle -= M_PI_2 / 12;
+  if (key == 2) 
+    w->angle += M_PI_2 / 12;
+}
+
+int ft_key(int key, t_map *w)
+{
+
   if (key == 53)
     exit(0);
-	if (key == 123 || key == 0)
-	{	//moveleft(w);
-  }
-	if (key == 124 || key == 2)
-	{	//moveright(w);
-	}
-  if (key == 126 || key == 13)
-	{	
-    moveup(w);
-	}
-  if (key == 125 || key == 1)
-	{
-
-  //movedown(w);
-	}
-
-
-	return (0);
+  move_left_right(w, key);
+  move_up_down(w, key);
+  change_orientation(w, key);
+  free(w->add);
+  w->img = mlx_new_image(w->mlx, WIDTH, HEIGHT);
+  w->add = mlx_get_data_addr(w->img, &(w->bits),
+      &(w->len), &(w->endian));
+  ft_set_rays(w);
+  mlx_put_image_to_window(w->mlx, w->win, w->img, 0, 0);
+  return (0);
 }

@@ -10,12 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS= -g -O0 -fsanitize=address
+/*FLAGS= -g -O0 -fsanitize=address*/
 
 SRC= main.c\
 	utils.c\
-	ray.c\
+	wall.c\
+	color.c\
+	draw.c\
 	init.c\
+	parsing.c\
 	key.c\
 
 NAME = wolf3d

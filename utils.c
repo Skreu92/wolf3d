@@ -18,26 +18,35 @@ void ft_error(void)
 	exit(0);
 }
 
-void ft_print_line(int x, int start, int end, int color, t_map *w)
+int			ft_line_len(t_line *line)
 {
-	char color1;
-	char color2;
-	char color3;
-	int y;
-	int tmp;
-	color1 = (w->color & 0xFFFFFF00) >> 24;
-	color2 = (w->color & 0xFFFFFF) >> 16;
-	color3 = (w->color & 0xFFFF) >> 8;
-	y = 0;
-	while (y < abs(end - start))
-	{
-		w->add[ (start + y) * WIDTH + x ] = color;
-		//w->add[ y * WIDTH + x * 4+ 1] = color2;
-		//w->add[y * WIDTH + x * 4+ 2] = color1;
-		y++;
-	}
+	static int i;
 
+	i = 0;
+	while (line)
+	{
+		if (line->width > i && i == 0)
+			i = line->width;
+		if (line->width != i)
+			ft_error();
+		line = line->next;
+	}
+	return (i);
 }
+
+int			ft_matrice_size(t_line *begin_list)
+{
+	int		i;
+
+	i = 0;
+	while (begin_list != NULL)
+	{
+		begin_list = begin_list->next;
+		i++;
+	}
+	return (i);
+}
+
 
 
 

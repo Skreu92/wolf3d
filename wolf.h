@@ -19,10 +19,8 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define WIDTH 512
-#define HEIGHT 384
-#define mapWidth 24
-#define mapHeight 24
+#define WIDTH 1280
+#define HEIGHT 800
 
 
 typedef struct 	s_line
@@ -32,54 +30,46 @@ typedef struct 	s_line
 	struct s_line *next;
 }				t_line;
 
-typedef struct s_pdou
-{
-	double x;
-	double y;
-}			t_pdou;
-
-typedef struct s_pint
-{
-	int x;
-	int y;
-}				t_pint;
 typedef struct 	s_map
 {
+	int **matrice;
+	int w_matrice;
+	int h_matrice;
 
-	void		*mlx;
-	void		*win;
-	void		*img;
-	int		*add;
-	int			*bpp;
-	int			*bpl;
-	int			*end;
-	t_pdou		*pos;
-	t_pdou		*plane;
-	t_pdou		*dir;
+	void	*mlx;
+	void	*win;
+	char	*add;
+	void	*img;
+	int		bits;
+	int		len;
+	int		endian;
 
-
-	t_pdou *camera;
-	t_pdou *rayPos;
-	t_pdou *rayDir;
-	t_pint *step;
-	t_pint *map;
-	t_pdou *deltaDist;
-	int color;
-	int side;
-	int hit;
-	double perpWallDist;
-	int x;
+	double	posx;
+	double	posy;
+	double	angle;
+	double	tmp_angle;
+	double	rx;
+	double	ry;
+	int		red;
+	int		green;
+	int		blue;
+	int		color;
+	int		col;
+	int		tmp_len;
 }				t_map;
 
-void ft_init_position(t_map *w, int x);
-int ft_key(int key, void *w);
-void ft_init_db(t_pdou *p, double x, double y);
-void init_double_pdp(t_map *w);
-t_map *ft_init_mlx(void);
-void ft_ray(t_map *w);
-t_map *parse_to_tab(char *str);
-t_line		*create_lst_line(int fd);
-t_line		*create_each_line(char **tab);
-void	ft_error(void);
-void ft_print_line(int x, int start, int end, int color, t_map *w);
+int ft_key(int key, t_map *w);
+void	ft_color(t_map *w);
+void	ft_draw_ray(t_map *w, double a);
+void	ft_draw(t_map *w, float x, float y);
+int		ft_near_other(double tmpx, double tmpy, double x, double y);
+void	ft_go_to_wall(t_map *w);
+int		ft_check_wall(t_map *w, double i);
+void	ft_check_orientation(t_map *w, double x, double y, double i);
+void ft_error(void);
+int			ft_matrice_size(t_line *begin_list);
+int			ft_line_len(t_line *line);
+t_map			*parse_to_tab(char *str);
+void	ft_init_mlx(t_map *w);
+void	ft_set_rays(t_map *w);
 #endif
