@@ -20,9 +20,9 @@ void	ft_init_mlx(t_map *w)
 	w->add = (char *)mlx_get_data_addr(w->img, &(w->bits),
 			&(w->len), &(w->endian));
 	ft_set_rays(w);
-	mlx_do_key_autorepeaton(w->mlx);
 	mlx_put_image_to_window(w->mlx, w->win, w->img, 0, 0);
-	mlx_key_hook(w->win, ft_key, w);
+	//mlx_key_hook(w->win, ft_key, w);
+	mlx_hook(w->win, 2, 0, ft_key, w);
 	mlx_hook(w->win, 17, 17, ft_leave_window, w);
 	mlx_loop(w->mlx);
 }

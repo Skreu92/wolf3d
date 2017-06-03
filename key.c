@@ -77,6 +77,7 @@ void		change_orientation(t_map *w, int key)
 
 int			ft_key(int key, t_map *w)
 {
+	printf("%d\n",key );
 	if (key == 53)
 		exit(0);
 	move_left_right(w, key);
