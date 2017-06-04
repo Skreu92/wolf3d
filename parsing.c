@@ -27,6 +27,8 @@ t_line			*create_each_line(char **tab)
 	while (i--)
 	{
 		line->tab[i] = ft_atoi(tab[i]);
+		if (line->tab[i] != 0 && line->tab[i] != 1 && &line->tab[i] != NULL)
+			ft_error();
 		free(tab[i]);
 	}
 	free(tab);
