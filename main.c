@@ -19,10 +19,10 @@ void		check_tab(t_map *w)
 	int a;
 
 	i = 0;
-	while (i++ < w->h_matrice - 1)
+	while (i++ < w->h_matrice - 2)
 	{
 		j = 0;
-		while (j++ < w->w_matrice - 1)
+		while (j++ < w->w_matrice - 2)
 		{
 			a = 0;
 			if (w->matrice[i][j] == 1)
