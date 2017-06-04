@@ -77,7 +77,6 @@ void		change_orientation(t_map *w, int key)
 
 int			ft_key(int key, t_map *w)
 {
-	printf("%d\n",key );
 	if (key == 53)
 		exit(0);
 	move_left_right(w, key);
@@ -89,14 +88,5 @@ int			ft_key(int key, t_map *w)
 			&(w->len), &(w->endian));
 	ft_set_rays(w);
 	mlx_put_image_to_window(w->mlx, w->win, w->img, 0, 0);
-	return (0);
-}
-
-
-int		ft_leave_window(t_map *w)
-{
-	mlx_destroy_image(w->mlx,w->img);
-	mlx_destroy_window(w->mlx, w->win);
-	exit(0);
 	return (0);
 }

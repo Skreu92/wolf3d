@@ -22,7 +22,7 @@ void	ft_draw_ray(t_map *w, double a)
 	i = HEIGHT / 2 - height;
 	(i < 0) ? i = 0 : 0;
 	ft_color(w);
-	while (i < HEIGHT/ 2 + height && i < HEIGHT && i >= 0 && w->col < WIDTH)
+	while (i < HEIGHT / 2 + height && i < HEIGHT && i >= 0 && w->col < WIDTH)
 		ft_draw(w, w->col, i++);
 	w->red = 0;
 	w->blue = 0;

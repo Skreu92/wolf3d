@@ -15,7 +15,7 @@
 
 # include "fcntl.h"
 # include "libft/libft.h"
-# include "minilibx/mlx.h"
+# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
@@ -59,7 +59,7 @@ typedef struct		s_map
 	int				k_status;
 }					t_map;
 
-int				ft_leave_window(t_map *map);
+int					ft_leave_window(t_map *map);
 int					ft_key(int key, t_map *w);
 void				ft_color(t_map *w);
 void				ft_draw_ray(t_map *w, double a);
