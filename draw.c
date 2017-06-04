@@ -18,7 +18,7 @@ void	ft_draw_ray(t_map *w, double a)
 	int height;
 
 	a = a * cos(w->tmp_angle - w->angle);
-	height = WIDTH / a;
+	height = WIDTH / a / 2;
 	i = HEIGHT / 2 - height;
 	(i < 0) ? i = 0 : 0;
 	ft_color(w);

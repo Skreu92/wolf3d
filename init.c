@@ -34,10 +34,10 @@ void	ft_set_rays(t_map *w)
 	double	angle;
 
 	w->col = 0;
-	angle = w->angle - (M_PI / 12);
+	angle = w->angle - (M_PI / 6);
 	rx = cos(angle);
 	ry = sin(angle);
-	while (angle < w->angle + (M_PI / 12))
+	while (angle < w->angle + (M_PI / 6))
 	{
 		rx = cos(angle);
 		ry = sin(angle);
@@ -45,7 +45,7 @@ void	ft_set_rays(t_map *w)
 		w->ry = ry;
 		w->tmp_angle = angle;
 		ft_go_to_wall(w);
-		angle += M_PI / 6 / WIDTH;
+		angle += M_PI / 3 / WIDTH;
 		w->col++;
 	}
 }
